@@ -1,0 +1,117 @@
+/* Floating ZTNA Security Indicator */
+#ztna-pill-root {
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+  z-index: 999999;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  user-select: none;
+}
+
+.ztna-floating-pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border-radius: 20px;
+  background: rgba(11, 17, 30, 0.92);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid #1E2D4A;
+  color: #FFF;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  transition: all 0.25s ease;
+}
+
+.ztna-floating-pill:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+  border-color: #00E5FF;
+}
+
+.ztna-indicator-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: #00E676;
+  box-shadow: 0 0 6px #00E676;
+}
+
+.ztna-floating-pill.low .ztna-indicator-dot {
+  background-color: #00E676;
+  box-shadow: 0 0 6px #00E676;
+}
+
+.ztna-floating-pill.medium .ztna-indicator-dot {
+  background-color: #FFAB00;
+  box-shadow: 0 0 6px #FFAB00;
+}
+
+.ztna-floating-pill.high .ztna-indicator-dot {
+  background-color: #FF1744;
+  box-shadow: 0 0 6px #FF1744;
+}
+
+.ztna-score-tag {
+  color: #00E5FF;
+  font-weight: 700;
+}
+
+.ztna-quick-popover {
+  position: absolute;
+  bottom: 40px;
+  right: 0;
+  width: 220px;
+  background: #0E1626;
+  border: 1px solid #1E2D4A;
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 11px;
+  color: #E2E8F0;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  display: none;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ztna-quick-popover.open {
+  display: flex;
+}
+
+.ztna-pop-title {
+  font-weight: 700;
+  color: #00E5FF;
+  font-size: 11.5px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding-bottom: 4px;
+}
+
+.ztna-pop-row {
+  display: flex;
+  justify-content: space-between;
+  color: #94A3B8;
+}
+
+.ztna-pop-row strong {
+  color: #FFF;
+}
+
+.ztna-pop-btn {
+  background: #182B4A;
+  color: #00E5FF;
+  border: 1px solid rgba(0, 229, 255, 0.3);
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-size: 10.5px;
+  font-weight: 700;
+  cursor: pointer;
+  text-align: center;
+  margin-top: 4px;
+}
+
+.ztna-pop-btn:hover {
+  background: rgba(0, 229, 255, 0.15);
+}

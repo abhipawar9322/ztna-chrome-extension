@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Internal Developer Gateway | ICEM ZTNA</title>
+  <style>
+    :root {
+      --bg: #090D16;
+      --card: #121B2D;
+      --border: #1E2D4A;
+      --cyan: #00E5FF;
+      --green: #00E676;
+      --text: #F1F5F9;
+      --text-muted: #94A3B8;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      padding: 30px;
+    }
+    .container { max-width: 1000px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; }
+    .banner {
+      background: rgba(0, 229, 255, 0.1);
+      border: 1px solid rgba(0, 229, 255, 0.3);
+      border-radius: 8px;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 13px;
+    }
+    .badge-secure {
+      background: var(--cyan);
+      color: #000;
+      font-weight: 800;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+    }
+    .header-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 20px;
+    }
+    h1 { font-size: 20px; font-weight: 700; color: #FFF; margin-bottom: 4px; }
+    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .item-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+    }
+    .item-title { font-size: 14px; font-weight: 700; color: #FFF; margin-bottom: 6px; }
+    .item-desc { font-size: 12px; color: var(--text-muted); line-height: 1.4; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="banner">
+      <div>🛡️ <strong>ZTNA Authenticated:</strong> User Abhishek Pawar (Role: Developer). Micro-segment: Internal Dev Plane.</div>
+      <span class="badge-secure">PROXY ACTIVE</span>
+    </div>
+
+    <div class="header-card">
+      <h1>Internal Engineering Portal & Microservices Hub</h1>
+      <p style="font-size: 12px; color: var(--text-muted);">Protected by Envoy Proxy & Open Policy Agent (OPA). Continuous Telemetry Enabled.</p>
+    </div>
+
+    <div class="grid">
+      <div class="item-card">
+        <div class="item-title">Spring Boot Control Plane</div>
+        <div class="item-desc">Core orchestration service handling identity synchronization, policy compilation, and OPA bundle distribution.</div>
+      </div>
+      <div class="item-card">
+        <div class="item-title">AI Anomaly Risk Engine</div>
+        <div class="item-desc">Python + ONNX Runtime service running Isolation Forest inference on user context & device telemetry.</div>
+      </div>
+      <div class="item-card">
+        <div class="item-title">Feature Store & Cache</div>
+        <div class="item-desc">Redis cluster maintaining streaming behavioral features, token blacklists, and rolling window counters.</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

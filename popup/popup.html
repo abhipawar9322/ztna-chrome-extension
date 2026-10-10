@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI-Powered ZTNA Agent</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Header -->
+    <header class="header">
+      <div class="logo-group">
+        <img src="../icons/icon32.png" alt="ZTNA Shield" class="logo-icon">
+        <div>
+          <div class="brand-title">AI-POWERED ZTNA</div>
+          <div class="brand-subtitle">ICEM Pune • BE Stage-I • Team #8</div>
+        </div>
+      </div>
+      <div class="gateway-status" id="gatewayStatusBadge">
+        <span class="status-dot"></span>
+        <span id="gatewayStatusText">ACTIVE</span>
+      </div>
+    </header>
+
+    <!-- User Identity & Role Badge -->
+    <section class="identity-card">
+      <div class="user-info">
+        <div class="avatar" id="userAvatar">AP</div>
+        <div class="user-details">
+          <div class="user-name" id="userName">Abhishek Pawar</div>
+          <div class="user-meta" id="userEmail">abhishek.pawar@indiraicem.ac.in</div>
+        </div>
+      </div>
+      <div class="role-selector-wrap">
+        <span class="role-label">Active Role:</span>
+        <select id="userRoleSelect" class="role-select">
+          <option value="Developer">Developer</option>
+          <option value="Employee">Employee</option>
+          <option value="Security Admin">Security Admin</option>
+          <option value="Guest">Guest</option>
+        </select>
+      </div>
+    </section>
+
+    <!-- AI Risk Score Gauge -->
+    <section class="risk-section">
+      <div class="section-title-row">
+        <span class="section-title">REAL-TIME AI RISK SCORE</span>
+        <span class="ai-badge" title="Isolation Forest + Autoencoder">ONNX ENGINE</span>
+      </div>
+
+      <div class="gauge-container">
+        <svg class="gauge-svg" viewBox="0 0 120 70">
+          <!-- Background arc -->
+          <path class="gauge-bg" d="M 15,65 A 45,45 0 0,1 105,65" />
+          <!-- Animated foreground arc -->
+          <path id="gaugeProgress" class="gauge-fill" d="M 15,65 A 45,45 0 0,1 105,65" />
+        </svg>
+        <div class="gauge-center">
+          <div class="risk-number" id="riskNumber">14</div>
+          <div class="risk-scale">/ 100</div>
+        </div>
+      </div>
+
+      <div class="risk-verdict" id="riskVerdict">
+        <span class="verdict-pill low" id="verdictPill">LOW RISK • ACCESS GRANTED</span>
+      </div>
+    </section>
+
+    <!-- Telemetry & Device Posture Summary -->
+    <section class="posture-section">
+      <div class="section-title-row">
+        <span class="section-title">DEVICE POSTURE CHECK</span>
+        <span class="posture-score-pill" id="postureScorePill">98% Compliant</span>
+      </div>
+
+      <div class="posture-grid">
+        <div class="posture-item" id="itemOS">
+          <span class="p-icon">💻</span>
+          <span class="p-label">OS Integrity</span>
+          <span class="p-status pass" id="statusOS">PASS</span>
+        </div>
+        <div class="posture-item" id="itemEnc">
+          <span class="p-icon">🔒</span>
+          <span class="p-label">BitLocker / Enc</span>
+          <span class="p-status pass" id="statusEnc">ACTIVE</span>
+        </div>
+        <div class="posture-item" id="itemAV">
+          <span class="p-icon">🛡️</span>
+          <span class="p-label">EDR / Defender</span>
+          <span class="p-status pass" id="statusAV">ACTIVE</span>
+        </div>
+        <div class="posture-item" id="itemCert">
+          <span class="p-icon">📜</span>
+          <span class="p-label">mTLS Client Cert</span>
+          <span class="p-status pass" id="statusCert">VALID</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quick Demonstration / Anomaly Controls -->
+    <section class="demo-controls-section">
+      <div class="section-title-row">
+        <span class="section-title">DEMO ANOMALY INJECTION</span>
+        <span class="demo-tag">Viva Simulator</span>
+      </div>
+
+      <div class="sim-toggles">
+        <label class="toggle-row">
+          <span>Off-Hours Access Shift</span>
+          <input type="checkbox" id="toggleOffHours">
+          <span class="switch"></span>
+        </label>
+        <label class="toggle-row">
+          <span>Geo-Drift / Foreign Proxy (Frankfurt)</span>
+          <input type="checkbox" id="toggleGeoDrift">
+          <span class="switch"></span>
+        </label>
+        <label class="toggle-row">
+          <span>Compromise Device Posture</span>
+          <input type="checkbox" id="toggleCompromise">
+          <span class="switch"></span>
+        </label>
+      </div>
+    </section>
+
+    <!-- Action Buttons -->
+    <footer class="footer-actions">
+      <button class="btn btn-secondary" id="btnRunPosture">
+        <span class="btn-icon">⚡</span> Run Posture Scan
+      </button>
+      <button class="btn btn-primary" id="btnOpenDashboard">
+        <span class="btn-icon">📊</span> Security Dashboard
+      </button>
+    </footer>
+
+    <!-- Protected Resource Quick Links -->
+    <div class="test-links">
+      <span>Test ZTNA Resource:</span>
+      <a href="#" id="linkInternalPortal">Dev Portal</a> •
+      <a href="#" id="linkProdDb">Prod DB (Strict)</a> •
+      <a href="#" id="linkHrPortal">HR System</a>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

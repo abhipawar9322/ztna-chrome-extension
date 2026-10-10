@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZTNA Command Center | AI-Powered Zero Trust Network Access</title>
+  <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+  <div class="dashboard-layout">
+    <!-- Top Bar -->
+    <header class="topbar">
+      <div class="brand-cluster">
+        <img src="../icons/icon48.png" alt="ZTNA Shield" class="topbar-logo">
+        <div class="brand-text">
+          <h1>AI-POWERED ZERO TRUST NETWORK ACCESS (ZTNA)</h1>
+        </div>
+      </div>
+
+      <div class="team-meta">
+        <div class="meta-item">
+        </div>
+        <div class="meta-item">
+      </div>
+    </header>
+
+    <!-- Architecture & Workflow Pipeline Visualizer -->
+    <section class="workflow-stepper-card">
+      <div class="stepper-title">ZTNA CONTINUOUS VERIFICATION WORKFLOW (NIST SP 800-207)</div>
+      <div class="stepper-grid">
+        <div class="step-card active">
+          <div class="step-num">01</div>
+          <div class="step-name">Device Onboarding</div>
+          <div class="step-desc">mTLS & HW Fingerprint</div>
+        </div>
+        <div class="step-card active">
+          <div class="step-num">02</div>
+          <div class="step-name">SSO + MFA</div>
+          <div class="step-desc">Keycloak OAuth2 / OIDC</div>
+        </div>
+        <div class="step-card active" id="stepAiCard">
+          <div class="step-num">03</div>
+          <div class="step-name">Context & AI Risk</div>
+          <div class="step-desc">Isolation Forest Engine</div>
+        </div>
+        <div class="step-card active">
+          <div class="step-num">04</div>
+          <div class="step-name">Policy Engine</div>
+          <div class="step-desc">OPA Dynamic Rego</div>
+        </div>
+        <div class="step-card active">
+          <div class="step-num">05</div>
+          <div class="step-name">Continuous Monitor</div>
+          <div class="step-desc">Async Telemetry Stream</div>
+        </div>
+        <div class="step-card active">
+          <div class="step-num">06</div>
+          <div class="step-name">Adaptive Response</div>
+          <div class="step-desc">Grant / Step-Up / Deny</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Grid -->
+    <main class="dashboard-grid">
+      <!-- Left Column: AI Risk Engine & Live Telemetry -->
+      <div class="col-left">
+        <!-- Live AI Risk Card -->
+        <div class="dash-card">
+          <div class="card-header">
+            <div class="card-title-group">
+              <span class="card-icon">🧠</span>
+              <h2>AI Risk Engine (Behavioral & Context Analytics)</h2>
+            </div>
+            <span class="engine-badge">Python + ONNX Runtime</span>
+          </div>
+
+          <div class="risk-summary-row">
+            <div class="risk-main-display">
+              <div class="risk-circle-wrap">
+                <svg class="dash-gauge-svg" viewBox="0 0 100 100">
+                  <circle class="dash-gauge-bg" cx="50" cy="50" r="42" />
+                  <circle id="dashGaugeFill" class="dash-gauge-fill" cx="50" cy="50" r="42" />
+                </svg>
+                <div class="dash-gauge-center">
+                  <span id="dashRiskScore" class="dash-risk-val">14</span>
+                  <span class="dash-risk-max">/ 100</span>
+                </div>
+              </div>
+              <div class="risk-status-group">
+                <div id="dashRiskVerdict" class="verdict-banner low">LOW RISK — TRUSTED SESSION</div>
+                <div class="model-meta">Model: <strong>Isolation Forest</strong> (Edge Anomaly Heuristic)</div>
+                <div class="confidence-meta">Inference Latency: <strong>4.2ms</strong> • Confidence: <strong id="dashConfidence">94.8%</strong></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Risk Feature Deconstruction -->
+          <div class="feature-bars-section">
+            <div class="sub-heading">FEATURE WEIGHT CONTRIBUTION:</div>
+            
+            <div class="feature-bar-item">
+              <div class="f-info">
+                <span>Temporal Anomaly (Access Time)</span>
+                <span id="featTimeVal">4%</span>
+              </div>
+              <div class="f-bar-track">
+                <div class="f-bar-fill" id="featTimeBar" style="width: 4%;"></div>
+              </div>
+            </div>
+
+            <div class="feature-bar-item">
+              <div class="f-info">
+                <span>Geolocation & Subnet Drift</span>
+                <span id="featGeoVal">2%</span>
+              </div>
+              <div class="f-bar-track">
+                <div class="f-bar-fill" id="featGeoBar" style="width: 2%;"></div>
+              </div>
+            </div>
+
+            <div class="feature-bar-item">
+              <div class="f-info">
+                <span>Device Posture & EDR Health</span>
+                <span id="featDevVal">2%</span>
+              </div>
+              <div class="f-bar-track">
+                <div class="f-bar-fill" id="featDevBar" style="width: 2%;"></div>
+              </div>
+            </div>
+
+            <div class="feature-bar-item">
+              <div class="f-info">
+                <span>Request Velocity & Burst Rate</span>
+                <span id="featVelVal">4%</span>
+              </div>
+              <div class="f-bar-track">
+                <div class="f-bar-fill" id="featVelBar" style="width: 4%;"></div>
+              </div>
+            </div>
+
+            <div class="feature-bar-item">
+              <div class="f-info">
+                <span>Navigation Entropy & Anomaly Shift</span>
+                <span id="featEntropyVal">2%</span>
+              </div>
+              <div class="f-bar-track">
+                <div class="f-bar-fill" id="featEntropyBar" style="width: 2%;"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Active Anomaly Flags -->
+          <div class="anomaly-flags-box" id="flagsContainer">
+            <span class="flag-title">Active Anomaly Flags:</span>
+            <div id="flagsList" class="flags-tags">
+              <span class="no-flags">✓ No contextual or behavioral anomalies detected</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Device Posture Engine -->
+        <div class="dash-card">
+          <div class="card-header">
+            <div class="card-title-group">
+              <span class="card-icon">🛡️</span>
+              <h2>Endpoint Context & Device Posture (Control Plane)</h2>
+            </div>
+            <button id="btnScanPostureFull" class="btn-sm">⚡ Re-Scan Posture</button>
+          </div>
+
+          <div class="posture-table">
+            <div class="posture-row">
+              <span class="col-name">Operating System</span>
+              <span class="col-val" id="postureOsText">Windows 11 Enterprise (x64)</span>
+              <span class="col-badge pass" id="postureOsBadge">VERIFIED</span>
+            </div>
+            <div class="posture-row">
+              <span class="col-name">Disk Encryption (BitLocker)</span>
+              <span class="col-val" id="postureEncText">AES-XTS 256-bit Full Volume</span>
+              <span class="col-badge pass" id="postureEncBadge">COMPLIANT</span>
+            </div>
+            <div class="posture-row">
+              <span class="col-name">Endpoint Detection (EDR / AV)</span>
+              <span class="col-val" id="postureAvText">Defender EDR (Signatures Current)</span>
+              <span class="col-badge pass" id="postureAvBadge">RUNNING</span>
+            </div>
+            <div class="posture-row">
+              <span class="col-name">Client mTLS Certificate</span>
+              <span class="col-val" id="postureCertText">ICEM-ZTNA-CLIENT-CERT-RSA2048</span>
+              <span class="col-badge pass" id="postureCertBadge">VALID</span>
+            </div>
+            <div class="posture-row">
+              <span class="col-name">Host Geolocation Context</span>
+              <span class="col-val" id="postureGeoText">Pune, Maharashtra, India (103.112.54.21)</span>
+              <span class="col-badge pass" id="postureGeoBadge">TRUSTED</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Interactive Anomaly Simulator & Micro-Segmentation -->
+      <div class="col-right">
+        <!-- Interactive Anomaly Simulator (For Viva & Demo) -->
+        <div class="dash-card demo-simulator-box">
+          <div class="card-header">
+            <div class="card-title-group">
+              <span class="card-icon">🧪</span>
+              <h2>Viva Demonstration Simulator (Anomaly Injection)</h2>
+            </div>
+            <span class="viva-badge">Stage-I Evaluation Tool</span>
+          </div>
+
+          <p class="sim-intro">
+            Simulate real-world security threats to demonstrate adaptive policy enforcement, 
+            Step-Up MFA challenges, and zero-trust quarantine live to project examiners.
+          </p>
+
+          <div class="sim-grid">
+            <div class="sim-cell">
+              <div class="sim-label-wrap">
+                <strong>Off-Hours Access</strong>
+                <span>Simulates 02:45 AM unauthorized login</span>
+              </div>
+              <label class="switch-lg">
+                <input type="checkbox" id="simOffHours">
+                <span class="slider"></span>
+              </label>
+            </div>
+
+            <div class="sim-cell">
+              <div class="sim-label-wrap">
+                <strong>Impossible Travel / Geo Drift</strong>
+                <span>Simulates jump from Pune to Frankfurt VPN node</span>
+              </div>
+              <label class="switch-lg">
+                <input type="checkbox" id="simGeoDrift">
+                <span class="slider"></span>
+              </label>
+            </div>
+
+            <div class="sim-cell">
+              <div class="sim-label-wrap">
+                <strong>High Request Velocity Burst</strong>
+                <span>Simulates automated scraping / credential stuffing</span>
+              </div>
+              <label class="switch-lg">
+                <input type="checkbox" id="simBurst">
+                <span class="slider"></span>
+              </label>
+            </div>
+
+            <div class="sim-cell">
+              <div class="sim-label-wrap">
+                <strong>Compromised Device Posture</strong>
+                <span>Simulates disabled BitLocker / revoked mTLS cert</span>
+              </div>
+              <label class="switch-lg">
+                <input type="checkbox" id="simCompromise">
+                <span class="slider"></span>
+              </label>
+            </div>
+          </div>
+
+          <div class="sim-actions-bar">
+            <button class="btn-demo-attack" id="btnAutoAttack">🔥 Run Automated Attack Demo</button>
+            <button class="btn-demo-reset" id="btnResetTrust">🔄 Reset to Clean Baseline</button>
+          </div>
+        </div>
+
+        <!-- Micro-Segmentation & Policy Enforcement Simulator -->
+        <div class="dash-card">
+          <div class="card-header">
+            <div class="card-title-group">
+              <span class="card-icon">🚪</span>
+              <h2>Micro-Segmentation Gateway & Policy Enforcement (OPA)</h2>
+            </div>
+            <span class="opa-badge">Envoy Proxy + OPA</span>
+          </div>
+
+          <div class="resources-list">
+            <!-- Resource 1 -->
+            <div class="resource-card" id="resCardInternal">
+              <div class="res-meta">
+                <div class="res-title">Internal Developer Gateway</div>
+                <div class="res-policy">Policy: Role in [Developer, Admin] • Risk &lt; 70</div>
+              </div>
+              <button class="btn-access" data-res="internal">Access Portal</button>
+            </div>
+
+            <!-- Resource 2 -->
+            <div class="resource-card" id="resCardDb">
+              <div class="res-meta">
+                <div class="res-title">Production PostgreSQL Database</div>
+                <div class="res-policy">Policy: Role in [Developer, Admin] • mTLS Required • Risk &lt; 35</div>
+              </div>
+              <button class="btn-access" data-res="db">Access Database</button>
+            </div>
+
+            <!-- Resource 3 -->
+            <div class="resource-card" id="resCardHr">
+              <div class="res-meta">
+                <div class="res-title">Confidential HR & Payroll System</div>
+                <div class="res-policy">Policy: Role in [Employee, Admin] • Strict Posture • Risk &lt; 35</div>
+              </div>
+              <button class="btn-access" data-res="hr">Access HR System</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Identity & Role Simulator -->
+        <div class="dash-card">
+          <div class="card-header">
+            <div class="card-title-group">
+              <span class="card-icon">👤</span>
+              <h2>Active Identity & SSO Session (Keycloak Context)</h2>
+            </div>
+          </div>
+
+          <div class="identity-dash-grid">
+            <div class="id-item">
+              <span class="id-k">User Name</span>
+              <strong id="dashUserName">Abhishek Pawar</strong>
+            </div>
+            <div class="id-item">
+              <span class="id-k">Institutional Email</span>
+              <strong id="dashUserEmail">abhishek.pawar@indiraicem.ac.in</strong>
+            </div>
+            <div class="id-item">
+              <span class="id-k">Active RBAC Role</span>
+              <select id="dashRoleSelect" class="dash-select">
+                <option value="Developer">Developer</option>
+                <option value="Employee">Employee</option>
+                <option value="Security Admin">Security Admin</option>
+                <option value="Guest">Guest</option>
+              </select>
+            </div>
+            <div class="id-item">
+              <span class="id-k">Session Token</span>
+              <code id="dashSessionId">sess-ztna-8a9f24</code>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Bottom Section: Real-time Audit Logs & Telemetry Stream -->
+    <section class="logs-container-card">
+      <div class="logs-header">
+        <div class="card-title-group">
+          <span class="card-icon">📜</span>
+          <h2>Real-Time ZTNA Audit Log Stream (Kafka / Redis Streams)</h2>
+        </div>
+        <div class="log-controls">
+          <input type="text" id="logFilterInput" placeholder="Filter logs by actor, event, or decision..." class="log-search-input">
+          <button id="btnExportLogs" class="btn-sm">📥 Export Audit Report (JSON)</button>
+          <button id="btnClearLogs" class="btn-sm btn-ghost">Clear</button>
+        </div>
+      </div>
+
+      <div class="table-wrap">
+        <table class="logs-table">
+          <thead>
+            <tr>
+              <th>Timestamp</th>
+              <th>Event Type</th>
+              <th>Actor Identity</th>
+              <th>Resource Target</th>
+              <th>Risk Score</th>
+              <th>Policy Decision</th>
+              <th>AI Context & Audit Summary</th>
+            </tr>
+          </thead>
+          <tbody id="logsTableBody">
+            <!-- Rendered by JS -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+
+  <script src="dashboard.js"></script>
+</body>
+</html>

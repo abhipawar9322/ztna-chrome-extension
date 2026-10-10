@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZTNA Access Denied | Micro-Segmentation Policy Block</title>
+  <style>
+    :root {
+      --bg: #070B14;
+      --card-bg: #10192D;
+      --border: #1F3050;
+      --red: #FF1744;
+      --red-glow: rgba(255, 23, 68, 0.35);
+      --text: #F1F5F9;
+      --text-muted: #94A3B8;
+      --cyan: #00E5FF;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .blocked-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-top: 4px solid var(--red);
+      border-radius: 12px;
+      max-width: 600px;
+      width: 100%;
+      padding: 32px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.6), 0 0 20px var(--red-glow);
+      text-align: center;
+    }
+    .icon-shield {
+      width: 64px;
+      height: 64px;
+      margin: 0 auto 16px;
+      background: rgba(255, 23, 68, 0.15);
+      border: 1px solid rgba(255, 23, 68, 0.4);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+    }
+    h1 {
+      font-size: 22px;
+      font-weight: 800;
+      color: #FFF;
+      margin-bottom: 8px;
+    }
+    .subtitle {
+      color: var(--text-muted);
+      font-size: 13px;
+      margin-bottom: 24px;
+    }
+    .details-box {
+      background: #0B111E;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+      text-align: left;
+      font-size: 12.5px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+    .d-row {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      padding-bottom: 6px;
+    }
+    .d-row:last-child { border-bottom: none; padding-bottom: 0; }
+    .d-k { color: var(--text-muted); }
+    .d-v { font-weight: 600; color: #FFF; }
+    .d-v.risk { color: var(--red); font-weight: 800; }
+    .flags-box {
+      background: rgba(255, 23, 68, 0.08);
+      border: 1px dashed rgba(255, 23, 68, 0.3);
+      border-radius: 6px;
+      padding: 10px;
+      font-size: 12px;
+      color: #FF8A80;
+    }
+    .actions {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+    }
+    .btn {
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-size: 12.5px;
+      font-weight: 700;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s;
+    }
+    .btn-dash {
+      background: #182B4A;
+      color: var(--cyan);
+      border: 1px solid rgba(0, 229, 255, 0.3);
+    }
+    .btn-dash:hover { background: rgba(0, 229, 255, 0.15); }
+    .btn-reset {
+      background: #24375D;
+      color: #FFF;
+    }
+    .btn-reset:hover { background: #2E4573; }
+    .footer-note {
+      margin-top: 20px;
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+  </style>
+</head>
+<body>
+  <div class="blocked-card">
+    <div class="icon-shield">🚫</div>
+    <h1>ACCESS DENIED — ZERO TRUST QUARANTINE</h1>
+    <p class="subtitle">AI-Powered Zero Trust Policy Engine has blocked this connection.</p>
+
+    <div class="details-box">
+      <div class="d-row">
+        <span class="d-k">Target Resource:</span>
+        <span class="d-v" id="txtResource">Production Core Database</span>
+      </div>
+      <div class="d-row">
+        <span class="d-k">AI Risk Score:</span>
+        <span class="d-v risk" id="txtRisk">88 / 100 (CRITICAL RISK)</span>
+      </div>
+      <div class="d-row">
+        <span class="d-k">Policy Engine:</span>
+        <span class="d-v">Open Policy Agent (OPA) — Rule: deny_untrusted_context</span>
+      </div>
+      <div class="d-row">
+        <span class="d-k">Incident ID:</span>
+        <span class="d-v" id="txtIncident">ZTNA-INC-84920</span>
+      </div>
+    </div>
+
+    <div class="flags-box" id="flagsBox">
+      <strong>Detected Anomaly Factors:</strong><br>
+      <span id="txtFlags">Compromised Device Posture; Impossible Travel Geolocation Drift</span>
+    </div>
+
+    <div class="actions" style="margin-top: 24px;">
+      <button class="btn btn-dash" id="btnGoDashboard">Open ZTNA Dashboard</button>
+      <button class="btn btn-reset" id="btnReset">Reset Baseline (Demo)</button>
+    </div>
+
+    <p class="footer-note">
+      Project ID: 8 • Indira College of Engineering & Management, Pune • BE Project Stage - I
+    </p>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const resource = params.get("resource") || "Protected Corporate Resource";
+    const risk = params.get("risk") || "85";
+    const flags = params.get("flags") || "Device Posture Non-Compliant / AI Anomaly Detected";
+
+    document.getElementById("txtResource").textContent = resource;
+    document.getElementById("txtRisk").textContent = `${risk} / 100 (CRITICAL RISK)`;
+    document.getElementById("txtFlags").textContent = flags;
+    document.getElementById("txtIncident").textContent = "ZTNA-INC-" + Math.floor(10000 + Math.random() * 90000);
+
+    document.getElementById("btnGoDashboard").addEventListener("click", () => {
+      chrome.tabs.create({ url: chrome.runtime.getURL("dashboard/dashboard.html") });
+    });
+
+    document.getElementById("btnReset").addEventListener("click", () => {
+      chrome.runtime.sendMessage({ action: "RESET_ALL" }, () => {
+        window.history.back();
+      });
+    });
+  </script>
+</body>
+</html>
